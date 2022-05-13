@@ -8,7 +8,6 @@ You might also check out the [a demo site](https://oralhistoryasdata.github.io/)
 
 Here is some [documentation to get you started](https://oralhistoryasdata.github.io/about.html#documentation). More fully developed documentation for this project is being developed, but there are several places linked here to get you started.
 
-
 ### About Oral History as Data
 
 Oral History as Data was first built in 2018, coming out of work at the University of Idaho Library's [Center for Digital Inquiry and Learning (CD?L)](https://cdil.lib.uidaho.edu/). 
