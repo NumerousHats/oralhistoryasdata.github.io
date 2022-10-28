@@ -1,6 +1,7 @@
 ---
 object-id: wrigley
 title: Robert Wrigley (SoundCloud)
+interviewer: Devin Becker
 date-interviewed: November 21, 2013
 location: Moscow, ID
 av_source: soundcloud

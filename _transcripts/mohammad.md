@@ -1,6 +1,7 @@
 ---
 object-id: mohammad
 title: K. Silem Mohammad (Vimeo)
+interviewer: Devin Becker
 date-interviewed: June 16, 2014
 location: Ashland, OR
 av_source: vimeo

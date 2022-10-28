@@ -2,8 +2,9 @@
 object-id: armantrout
 title: Rae Armantrout (YouTube)
 date-interviewed: March 27, 2014
+interviewer: Devin Becker
 location: San Diego, CA
-av_source: youtube
+av_source: YouTube
 audiovideo-id: BX_bURONf78
 ---
 
