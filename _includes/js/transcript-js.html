@@ -53,7 +53,6 @@ params.delete('q');
    var p = params.toString();
 window.history.replaceState({}, '', location.pathname + '?' + p );
 $("rect").removeClass("dark");
-$("rect").removeClass("dark");
 $("rect").removeClass (function (index, className) {
     return (className.match (/(^|\s)primary-\S+/g) || []).join(' ');
 });         
