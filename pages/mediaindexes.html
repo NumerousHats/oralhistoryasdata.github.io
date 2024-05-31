@@ -12,8 +12,8 @@ permalink: mediaindexes.html
             <div class="card" >
                 <div class="card-body">
                     <h3 class="card-title">{{indexfile.title}}</h3>
-                    {% if indexfile.date-interviewed%}<h6 class="card-subtitle mb-2 text-muted">{{transcript.date-interviewed}}</h6>{%endif%}    
-                    <a href="transcripts/{{transcript.object-id}}.html" class="card-link stretched-link">Go to interview</a>
+                    {% if indexfile.date-interviewed%}<h6 class="card-subtitle mb-2 text-muted">{{indexfile.date-interviewed}}</h6>{%endif%}    
+                    <a href="indexes/{{indexfile.object-id}}.html" class="card-link stretched-link">Go to interview</a>
                 </div>
             </div>
         </div>

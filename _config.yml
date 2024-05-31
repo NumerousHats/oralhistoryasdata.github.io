@@ -83,6 +83,9 @@ collections:
   transcripts:
     output: true
     permalink: /:collection/:title
+  indexes:
+    output: true
+    permalink: /:collection/:title
   howto:
     output: true
     permalink: /:collection/:name
@@ -92,6 +95,10 @@ defaults:
       type: transcripts
     values:
       layout: transcript
+    scope: 
+      type: indexes
+    values:
+      layout: mediaindex
   - scope:
       type: howto
     values:
