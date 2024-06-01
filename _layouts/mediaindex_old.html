@@ -1,14 +1,33 @@
 ---
 layout: default
 ---
-{% assign items = site.data.indexes[page.object-id] %}
+
+<!--the liquid code below reads in subjects from the transcript file. We probably won't need that -->
+
+{% if page.object-id == 'all' %}
+  {% assign transcripts = site.data.transcripts %}
+{% else %}
+  {% assign items = site.data.transcripts[page.object-id] %}
+  {%- comment -%} find all words used in the subject metadata {%- endcomment -%}
+  {%- assign min-count = 1 -%}
+  {%- assign raw-subjects = items | map: "tags" | compact | join: ";" | split: ";" -%}
+
+  {%- capture subjects -%}
+    {% for s in raw-subjects %}
+      {% if s != "" %}{{- s | strip | downcase -}};{% endif %}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- assign subjects = subjects | split: ";" -%}
+  {%- assign uniqueSubjects = subjects | uniq | sort -%}
+{%endif%}
+
 {% if page.av_source %}{% assign av = page.av_source | downcase %}{% endif %}
 
 <div class="container">
   <div id="full_container" class="p-3 p-md-5 justify-content-center m-auto">
     <div id="object-meta">
-      <h2 class="my-2 title">{{ page.title}}
-        <!-- not sure how this "bio" thing is going to end up working --> 
+      <h2 class="my-2 title">{{ page.title}} 
         {% if page.content %}
         <a type="button" class="btn btn-sm btn-outline-dark meta" data-bs-toggle="modal" data-bs-target="#bio-modal">
           Click for bio</a>
@@ -29,9 +48,9 @@ layout: default
       </div>
       {% endif %}
       
-      <!-- we'll come back to this. this could be color bars for each segment -->
+      {% unless page.object-id == 'all' %}
       <div class="vizdiv">
-        <h3 class="mt-3 mb-0 meta">Segments:</h3>
+        <h3 class="mt-3 mb-0 meta">Topics:</h3>
         <svg class="chart" width="100%" height="100px" style="overflow: visible">
           {% for item in items %}
             {% assign my_integer = forloop.length %}
@@ -47,6 +66,7 @@ layout: default
           {%endfor%}
         </svg>
       </div>
+      {% endunless %}
     </div>
 
     <div id="filters-content" class="pe-md-5">
