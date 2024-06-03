@@ -28,33 +28,46 @@ layout: default
         {% include player/{{av}}.html %}
       </div>
       {% endif %}
+    </div>
       
     <div id="contents" class="pe-md-5">
-      <div id="contents-container" class="pe-5">
+      <div id="contents-container">
         {% for item in items %}
           {% assign prev_index = forloop.index0 | times: 1 | minus: 1 %}
           {% assign prev_speaker = items[prev_index].speaker %}
           {% assign mod = forloop.index | plus: 1 | modulo: 5 %}
-          <div id="{{page.object-id}}{{ forloop.index }}" class="row line my-1">
-            <p class="words col-md-10 col-lg-8 col-print-12 pr-0">
-              {% unless item.speaker == prev_speaker %}
-                {%if item.speaker %}
-                  <span class="fw-bold pe-3 pb-3">{{item.speaker | remove: ":"}}:</span>
-                {% endif %}
-              {% endunless %}
-              {{item.title}}
-            </p>
-  
-            <div class="col-12 col-md-2 timestamp mb-3 small text-center">
-              {%if item.timestamp%}
+      
+          <div class="list-group-item segment">
+            <div class="d-flex w-100 justify-content-between index-item">
+              <h5 class="mb-1">{{item.title}}</h5>
+              <small>{%if item.timestamp%}
                 {% if page.av_source %}
                   {% capture avlink %}timestamp/{{page.av_source | downcase }}.html{% endcapture %}
                   <a href="{% include {{avlink}} %}">{{item.timestamp}}</a>
                 {% else %}
                   {{item.timestamp}}
                 {% endif %}
-              {% endif %}
+              {% endif %}</small>
             </div>
+            {% if item.synopsis %}
+              <p class="mb-1">{{item.synopsis}}</p>
+            {% endif %}
+            <small>
+              <dl class="dl-horizontal">
+                {% if item.partial_transcript %}
+                  <dt>Partial Transcript:</dt>
+                  <dd>{{item.partial_transcript}}</dd>
+                {% endif %}
+                {% if item.keywords %}
+                  <dt>Keywords:</dt>
+                  <dd>{{item.keywords}}</dd>
+                {% endif %}
+                {% if item.keywords %}
+                  <dt>Subjects:</dt>
+                  <dd>{{item.subjects}}</dd>
+                {% endif %}
+                </dl>
+            </small>
           </div>
         {% endfor %}
       </div>
