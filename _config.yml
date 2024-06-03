@@ -95,7 +95,7 @@ defaults:
       type: transcripts
     values:
       layout: transcript
-    scope: 
+  - scope: 
       type: indexes
     values:
       layout: mediaindex
