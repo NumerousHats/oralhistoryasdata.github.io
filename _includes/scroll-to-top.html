@@ -5,7 +5,7 @@ var topheight = document.getElementById('object-meta').clientHeight;
 window.onscroll = function(){
     //TOP
     if (triggerElement.getBoundingClientRect().top <= 0){ 
-        console.log("height is " + topheight);
+        /* console.log("height is " + topheight); */
         document.getElementById("scroll-to-top").style.display = "block";
         triggerElement.setAttribute('style', 'margin-top:' + topheight + 'px');
         document.getElementById('object-meta').classList.add('iframe-wrapper');

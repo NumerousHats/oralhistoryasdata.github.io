@@ -7,21 +7,7 @@ layout: default
 <div class="container">
   <div id="full_container" class="p-3 p-md-5 justify-content-center m-auto">
     <div id="object-meta">
-      <h2 class="my-2 title">{{ page.title}}
-        <!-- not sure how this "bio" thing is going to end up working --> 
-        {% if page.content %}
-        <a type="button" class="btn btn-sm btn-outline-dark meta" data-bs-toggle="modal" data-bs-target="#bio-modal">
-          Click for bio</a>
-        {% endif %}
-      </h2>
-
-      {% if page.content %}{% include feature/bio-modal.html %}{% endif %}
-
-      <p class="meta">
-        {%if page.location%}{{page.location}} on {%endif%}
-        {%if page.date-interviewed%}{{page.date-interviewed}}{%endif%}
-        {%if page.interviewer%} <br>Interviewer: {{page.interviewer}}{%endif%}
-      </p>
+      <h2 class="my-2 title">{{ page.title}}</h2>
 
       {% if av %}
       <div class="interview-object mt-3 px-3">
@@ -29,15 +15,59 @@ layout: default
       </div>
       {% endif %}
     </div>
-      
-    <div id="contents" class="pe-md-5">
-      <div id="contents-container">
+
+    <div id="metadata" class="meta pe-5">
+      {% if page.content %}
+        <p>{{page.content}}</p>
+      {% endif %}
+      <small>
+        <dl class="dl-horizontal">
+          {% if page.language %}
+            <dt>Language:</dt>
+            <dd>{{page.language}}</dd>
+          {% endif %}
+          {% if page.creator %}
+            <dt>Creator:</dt>
+            <dd>{{page.creator}}</dd>
+          {% endif %}
+          {% if page.recording_type %}
+            <dt>Type of recording:</dt>
+            <dd>{{page.recording_type}}</dd>
+          {% endif %}
+          {% if page.creator %}
+            <dt>Creator:</dt>
+            <dd>{{page.creator}}</dd>
+          {% endif %}
+          {% if page.interviewee %}
+            <dt>Interviewee:</dt>
+            <dd>{{page.interviewee}}</dd>
+          {% endif %}
+          {% if page.subject_terms %}
+            <dt>Subject terms:</dt>
+            <dd>{{page.subject_terms}}</dd>
+          {% endif %}
+          {% if page.copyright_owner %}
+            <dt>Copyright owner:</dt>
+            <dd>{{page.copyright_owner}}</dd>
+          {% endif %}
+          {% if page.copyright_statement %}
+            <dt>Copyright statement:</dt>
+            <dd>{{page.copyright_statement}}</dd>
+          {% endif %}
+        </dl>
+      </small>
+    </div>
+
+    <div id="contents" class="pe-5">
+      <div id="contents-container" class="pe-5">
+        <h2>Contents of the recording:</h2>
         {% for item in items %}
           {% assign prev_index = forloop.index0 | times: 1 | minus: 1 %}
           {% assign prev_speaker = items[prev_index].speaker %}
           {% assign mod = forloop.index | plus: 1 | modulo: 5 %}
       
-          <div class="list-group-item segment">
+          <!-- <div class="list-group-item segment"> -->
+          <div class="row my-1 segment">
             <div class="d-flex w-100 justify-content-between index-item">
               <h5 class="mb-1">{{item.title}}</h5>
               <small>{%if item.timestamp%}
@@ -62,7 +92,7 @@ layout: default
                   <dt>Keywords:</dt>
                   <dd>{{item.keywords}}</dd>
                 {% endif %}
-                {% if item.keywords %}
+                {% if item.subjects %}
                   <dt>Subjects:</dt>
                   <dd>{{item.subjects}}</dd>
                 {% endif %}
