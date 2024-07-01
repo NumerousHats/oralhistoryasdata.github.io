@@ -5,102 +5,108 @@ layout: default
 {% if page.av_source %}{% assign av = page.av_source | downcase %}{% endif %}
 
 <div class="container">
-  <div id="full_container" class="p-3 p-md-5 justify-content-center m-auto">
-    <div id="object-meta">
-      <h2 class="my-2 title">{{ page.title}}</h2>
+    <div id="full_container" class="p-3 p-md-5 justify-content-center m-auto">
+        <div id="object-meta">
+            <h2 class="my-2 title">{{ page.title}}</h2>
 
-      {% if av %}
-      <div class="interview-object mt-3 px-3">
-        {% include player/{{av}}.html %}
-      </div>
-      {% endif %}
-    </div>
-
-    <div id="metadata" class="meta pe-5">
-      {% if page.content %}
-        <p>{{page.content}}</p>
-      {% endif %}
-      <small>
-        <dl class="dl-horizontal">
-          {% if page.language %}
-            <dt>Language:</dt>
-            <dd>{{page.language}}</dd>
-          {% endif %}
-          {% if page.creator %}
-            <dt>Creator:</dt>
-            <dd>{{page.creator}}</dd>
-          {% endif %}
-          {% if page.recording_type %}
-            <dt>Type of recording:</dt>
-            <dd>{{page.recording_type}}</dd>
-          {% endif %}
-          {% if page.creator %}
-            <dt>Creator:</dt>
-            <dd>{{page.creator}}</dd>
-          {% endif %}
-          {% if page.interviewee %}
-            <dt>Interviewee:</dt>
-            <dd>{{page.interviewee}}</dd>
-          {% endif %}
-          {% if page.subject_terms %}
-            <dt>Subject terms:</dt>
-            <dd>{{page.subject_terms}}</dd>
-          {% endif %}
-          {% if page.copyright_owner %}
-            <dt>Copyright owner:</dt>
-            <dd>{{page.copyright_owner}}</dd>
-          {% endif %}
-          {% if page.copyright_statement %}
-            <dt>Copyright statement:</dt>
-            <dd>{{page.copyright_statement}}</dd>
-          {% endif %}
-        </dl>
-      </small>
-    </div>
-
-    <div id="contents" class="pe-5">
-      <div id="contents-container" class="pe-5">
-        <h2>Contents of the recording:</h2>
-        {% for item in items %}
-          {% assign prev_index = forloop.index0 | times: 1 | minus: 1 %}
-          {% assign prev_speaker = items[prev_index].speaker %}
-          {% assign mod = forloop.index | plus: 1 | modulo: 5 %}
-      
-          <!-- <div class="list-group-item segment"> -->
-          <div class="row my-1 segment">
-            <div class="d-flex w-100 justify-content-between index-item">
-              <h5 class="mb-1">{{item.title}}</h5>
-              <small>{%if item.timestamp%}
-                {% if page.av_source %}
-                  {% capture avlink %}timestamp/{{page.av_source | downcase }}.html{% endcapture %}
-                  <a href="{% include {{avlink}} %}">{{item.timestamp}}</a>
-                {% else %}
-                  {{item.timestamp}}
-                {% endif %}
-              {% endif %}</small>
+            {% if av %}
+            <div class="interview-object mt-3 px-3">
+                {% include player/{{av}}.html %}
             </div>
-            {% if item.synopsis %}
-              <p class="mb-1">{{item.synopsis}}</p>
+            {% endif %}
+        </div>
+
+        <div id="metadata" class="meta pe-5">
+            {% if page.content %}
+            <p>{{page.content}}</p>
             {% endif %}
             <small>
-              <dl class="dl-horizontal">
-                {% if item.partial_transcript %}
-                  <dt>Partial Transcript:</dt>
-                  <dd>{{item.partial_transcript}}</dd>
-                {% endif %}
-                {% if item.keywords %}
-                  <dt>Keywords:</dt>
-                  <dd>{{item.keywords}}</dd>
-                {% endif %}
-                {% if item.subjects %}
-                  <dt>Subjects:</dt>
-                  <dd>{{item.subjects}}</dd>
-                {% endif %}
+                <dl class="dl-horizontal">
+                    {% if page.language %}
+                    <dt>Language:</dt>
+                    <dd>{{page.language}}</dd>
+                    {% endif %}
+                    {% if page.creator %}
+                    <dt>Creator:</dt>
+                    <dd>{{page.creator}}</dd>
+                    {% endif %}
+                    {% if page.recording_type %}
+                    <dt>Type of recording:</dt>
+                    <dd>{{page.recording_type}}</dd>
+                    {% endif %}
+                    {% if page.interviewee %}
+                    <dt>Interviewee:</dt>
+                    <dd>{{page.interviewee}}</dd>
+                    {% endif %}
+                    {% if page.subject_terms %}
+                    <dt>Subject terms:</dt>
+                    <dd>{{page.subject_terms}}</dd>
+                    {% endif %}
+                    {% if page.copyright_owner %}
+                    <dt>Copyright owner:</dt>
+                    <dd>{{page.copyright_owner}}</dd>
+                    {% endif %}
+                    {% if page.copyright_statement %}
+                    <dt>Copyright statement:</dt>
+                    <dd>{{page.copyright_statement}}</dd>
+                    {% endif %}
                 </dl>
             </small>
-          </div>
-        {% endfor %}
-      </div>
+        </div>
+
+        <div id="contents" class="pe-5">
+            <div id="contents-container" class="pe-5">
+                <h2>Contents of this recording:</h2>
+                {% for item in items %}
+                {% assign prev_index = forloop.index0 | times: 1 | minus: 1 %}
+                {% assign prev_speaker = items[prev_index].speaker %}
+                {% assign mod = forloop.index | plus: 1 | modulo: 5 %}
+
+                <!-- <div class="list-group-item segment"> -->
+                <div class="row my-1 segment">
+                    <div class="d-flex w-100 justify-content-between index-item">
+                        <h5 class="mb-3">{{item.title}}</h5>
+                        <small class="ms-3">{%if item.timestamp%}
+                            {% if page.av_source %}
+                            {% capture avlink %}timestamp/{{page.av_source | downcase }}.html{% endcapture %}
+                            <a href="{% include {{avlink}} %}">{{item.timestamp}}</a>
+                            {% else %}
+                            {{item.timestamp}}
+                            {% endif %}
+                            {% endif %}</small>
+                    </div>
+                    <div class="row">
+                        {% if item.synopsis %}
+                        <div class="col-md-8 col-lg-8">
+                            <small>
+                                <p class="mb-1">{{item.synopsis}}</p>
+                            </small>
+                        </div>
+                        {% endif %}
+                        {% if item.partial_transcript or item.keywords or item.subjects %}
+                        <div class="col-md-4 col-lg-4 mb-4">
+                            <small>
+                                <dl class="dl-horizontal">
+                                    {% if item.partial_transcript %}
+                                    <dt>Partial Transcript:</dt>
+                                    <dd>{{item.partial_transcript}}</dd>
+                                    {% endif %}
+                                    {% if item.keywords %}
+                                    <dt>Keywords:</dt>
+                                    <dd>{{item.keywords}}</dd>
+                                    {% endif %}
+                                    {% if item.subjects %}
+                                    <dt>Subjects:</dt>
+                                    <dd>{{item.subjects}}</dd>
+                                    {% endif %}
+                                </dl>
+                            </small>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-  </div>
 </div>
